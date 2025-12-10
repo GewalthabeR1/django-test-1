@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ post.title }} - Мой Блог{% endblock %}
+
+{% block content %}
+    <div class="post">
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p class="post-date">
+            Опубликовано: {{ post.created_at|date:"d.m.Y H:i" }}
+            {% if post.updated_at != post.created_at %}
+                <br>Обновлено: {{ post.updated_at|date:"d.m.Y H:i" }}
+            {% endif %}
+        </p>
+        
+        <div class="content">
+            {{ post.content|linebreaks }}
+        </div>
+        
+        <div style="margin-top: 30px;">
+            <a href="{% url 'post_list' %}" class="btn">← Назад к списку постов</a>
+        </div>
+    </div>
+{% endblock %}
